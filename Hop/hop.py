@@ -1,9 +1,10 @@
 #for using random method, we should import this function
 import random
-
+#list
+My_List=[]
 #user's name
 Name=input('Ur name:')
-
+My_List.append(Name+str(0))
 def Game():
     #user's score
     Score=0
@@ -23,6 +24,8 @@ def Game():
                 if UserNumberR==UserNumberT:
                     print('Correct!')
                     Score=Score+1
+                    My_List.remove(Name+str(Score-1))
+                    My_List.append(Name+str(Score))
                     if (UserNumberT+1)%5==0:
                         print("Hop")
                     else:
@@ -39,10 +42,14 @@ def Game():
                     #Answer is yes or no
                     Answer=input('y or n?')
                     if Answer=="y":
+                        My_List.remove(Name+str(Score))
+
                         Score=0
+                        My_List.append(Name+str(Score))
                         Game()
                     else:
-                        print('Ur score:'+str(Score))
+
+                        print('Ur score:'+My_List.pop())
                         return
 
                     
@@ -59,16 +66,22 @@ def Game():
                     #Answer is yes or no
                 Answer=input('y or n?')
                 if Answer=="y":
+                    My_List.remove(Name+str(Score))
+
                     Score=0
+                    My_List.append(Name+str(Score))
                     Game()
                 else:
-                    print('Ur score:'+str(Score))
+                    print('Ur score:'+My_List.pop())
                     return
         else:
             UserNumberR=input('The correct answer:')
             if UserNumberR=="hop" or UserNumberR=="Hop":
                 print('Correct!') 
                 Score=Score+1
+                My_List.remove(Name+str(Score-1))
+
+                My_List.append(Name+str(Score))
                 print(UserNumberT+1) 
             else:
                 
@@ -82,9 +95,10 @@ def Game():
                 Answer=input('y or n?')
                 if Answer=="y":
                     Score=0
+                    My_List.append(Name+str(Score))
                     Game()
                 else:
-                    print('Ur score:'+str(Score))
+                    print('Ur score:'+My_List.pop())
                     return
         UserNumberT=UserNumberT+2
 #call function
