@@ -2,11 +2,12 @@
 import random
 #list
 My_List=[]
-#user's name
-Name=input('Ur name:')
-My_List.append([Name,str(0)])
+
 #function is hop's code
 def Game():
+    #user's name
+    Name=input('Ur name:')
+    My_List.append([Name,str(0)])
     #user's score
     Score=0
     # the first number
@@ -48,14 +49,14 @@ def Game():
                     #Answer is yes or no
                     Answer=input('y or n?')
                     if Answer=="y":
-                        My_List.remove([Name,str(Score)])
-
-                        Score=0
-                        My_List.append([Name,str(Score)])
                         Game()
                     else:
-
-                        print('Ur score:'+str(My_List.pop()[1]))
+                        for Element in My_List:
+                            if Element[0]==Name:
+                                if int(Element[1])<Score:
+                                    My_List.remove(Element)
+                                    My_List.append([Name,str(Score)])
+                        print(str(My_List))
                         break
 
                     
@@ -72,13 +73,14 @@ def Game():
                     #Answer is yes or no
                 Answer=input('y or n?')
                 if Answer=="y":
-                    My_List.remove([Name,str(Score)])
-
-                    Score=0
-                    My_List.append([Name,str(Score)])
                     Game()
                 else:
-                    print('Ur score:'+str(My_List.pop()[1]))
+                    for Element in My_List:
+                        if Element[0]==Name:
+                            if int(Element[1])<Score:
+                                My_List.remove(Element)
+                                My_List.append([Name,str(Score)])
+                                print(str(My_List))
                     break
         #UserNumberT is hop
         else:
@@ -101,11 +103,14 @@ def Game():
                     #Answer is yes or no
                 Answer=input('y or n?')
                 if Answer=="y":
-                    Score=0
-                    My_List.append([Name,str(Score)])
                     Game()
                 else:
-                    print('Ur score:'+str(My_List.pop()[1]))
+                    for Element in My_List:
+                        if Element[0]==Name:
+                            if int(Element[1])<Score:
+                                My_List.remove(Element)
+                                My_List.append([Name,str(Score)])
+                    print(str(My_List))
                     break
         UserNumberT=UserNumberT+2
 #call function
