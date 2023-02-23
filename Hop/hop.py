@@ -4,28 +4,32 @@ import random
 My_List=[]
 #user's name
 Name=input('Ur name:')
-My_List.append(Name+str(0))
+My_List.append([Name,str(0)])
+#function is hop's code
 def Game():
     #user's score
     Score=0
     # the first number
     First=random.randint(0, 10)
+    #when the first number is hop,this is wrong so it should changed
     while First%5==0:
         First=random.randint(0, 10)
     print('The first number:'+str(First))
     #User number that is True
     UserNumberT=First+1
     while True:
+    #if UserNumberT is not hop, input is int
         if UserNumberT%5 !=0:
     #User number that is received
             UserNumberR=input('The correct answer:')
+            #it is possible that user writes hop
             if UserNumberR !="hop" and UserNumberR !="Hop":
                 UserNumberR=int(UserNumberR)
                 if UserNumberR==UserNumberT:
                     print('Correct!')
                     Score=Score+1
-                    My_List.remove(Name+str(Score-1))
-                    My_List.append(Name+str(Score))
+                    My_List.remove([Name,str(Score-1)])
+                    My_List.append([Name,str(Score)])
                     if (UserNumberT+1)%5==0:
                         print("Hop")
                     else:
@@ -34,27 +38,29 @@ def Game():
                 else:
                 
                     print('Wrong')
+                    #UserNumberT is number that is not hop
                     if UserNumberT%5 !=0:
                         print('The correct answer:'+str(UserNumberT))
                     else:
+                        #UserNumberT is hop
                         print('Hop')
                     print('Do you want to play again?')
                     #Answer is yes or no
                     Answer=input('y or n?')
                     if Answer=="y":
-                        My_List.remove(Name+str(Score))
+                        My_List.remove([Name,str(Score)])
 
                         Score=0
-                        My_List.append(Name+str(Score))
+                        My_List.append([Name,str(Score)])
                         Game()
                     else:
 
-                        print('Ur score:'+My_List.pop())
-                        return
+                        print('Ur score:'+str(My_List.pop()[1]))
+                        break
 
                     
         
-                    
+                   
             else:
                 
                 print('Wrong')
@@ -66,22 +72,23 @@ def Game():
                     #Answer is yes or no
                 Answer=input('y or n?')
                 if Answer=="y":
-                    My_List.remove(Name+str(Score))
+                    My_List.remove([Name,str(Score)])
 
                     Score=0
-                    My_List.append(Name+str(Score))
+                    My_List.append([Name,str(Score)])
                     Game()
                 else:
-                    print('Ur score:'+My_List.pop())
-                    return
+                    print('Ur score:'+str(My_List.pop()[1]))
+                    break
+        #UserNumberT is hop
         else:
             UserNumberR=input('The correct answer:')
             if UserNumberR=="hop" or UserNumberR=="Hop":
                 print('Correct!') 
                 Score=Score+1
-                My_List.remove(Name+str(Score-1))
+                My_List.remove([Name,str(Score-1)])
 
-                My_List.append(Name+str(Score))
+                My_List.append([Name,str(Score)])
                 print(UserNumberT+1) 
             else:
                 
@@ -95,11 +102,11 @@ def Game():
                 Answer=input('y or n?')
                 if Answer=="y":
                     Score=0
-                    My_List.append(Name+str(Score))
+                    My_List.append([Name,str(Score)])
                     Game()
                 else:
-                    print('Ur score:'+My_List.pop())
-                    return
+                    print('Ur score:'+str(My_List.pop()[1]))
+                    break
         UserNumberT=UserNumberT+2
 #call function
 Game()
