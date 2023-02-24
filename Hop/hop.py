@@ -1,5 +1,6 @@
 #for using random method, we should import this function
 import random
+import sys
 #list
 My_List=[]
 
@@ -55,9 +56,11 @@ def Game():
                             if Element[0]==Name:
                                 if int(Element[1])<Score:
                                     My_List.remove(Element)
-                                    My_List.append([Name,str(Score)])
+                                else:
+                                    My_List.remove([Name,str(Score)])        
                         print(str(My_List))
-                        break
+                        exit()
+                        
 
                     
         
@@ -79,9 +82,10 @@ def Game():
                         if Element[0]==Name:
                             if int(Element[1])<Score:
                                 My_List.remove(Element)
-                                My_List.append([Name,str(Score)])
-                                print(str(My_List))
-                    break
+                            else:
+                                My_List.remove([Name,str(Score)])    
+                    print(str(My_List))
+                    exit()
         #UserNumberT is hop
         else:
             UserNumberR=input('The correct answer:')
@@ -109,9 +113,10 @@ def Game():
                         if Element[0]==Name:
                             if int(Element[1])<Score:
                                 My_List.remove(Element)
-                                My_List.append([Name,str(Score)])
+                            else:
+                                My_List.remove([Name,str(Score)])
                     print(str(My_List))
-                    break
+                    exit()
         UserNumberT=UserNumberT+2
 #call function
 Game()
